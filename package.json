@@ -8,9 +8,10 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
-    "vite-plugin-pug": "^0.3.2",
-    "@nuxt/ui-pro": "npm:@nuxt/ui-pro-edge@latest",
     "@nuxt/content": "npm:@nuxt/content-edge@latest",
-    "nuxt": "^3.8.2"
+    "@nuxt/ui-pro": "npm:@nuxt/ui-pro-edge@latest",
+    "nuxt": "^3.8.2",
+    "vite-plugin-pug": "^0.3.2",
+    "nuxt-simple-sitemap": "^4.1.6"
   }
 }

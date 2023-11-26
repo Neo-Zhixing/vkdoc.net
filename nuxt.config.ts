@@ -6,15 +6,15 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
     '@nuxt/ui',
+    'nuxt-simple-sitemap',
     //'@nuxtjs/web-vitals',
-    //'@nuxthq/studio',
   ],
-  content: {
-    highlight: {
-      preload: [
-        'rust',
-        'glsl'
-      ]
-    }
+  site: {
+    url: 'https://vkdoc.net',
+  },
+  sitemap: {
+    sources: [
+      '/api/sitemap'
+    ]
   },
 })

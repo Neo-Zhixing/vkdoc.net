@@ -53,40 +53,24 @@ const attributes: Attribute[] = computed(() => {
   if (!page.value) {
     return v;
   }
-  if (page.value.cmd_buf_level) {
-    v.push({
-      id: 'cmd_buf_level',
-      title: 'Command Buffer Level',
-      values: page.value.cmd_buf_level.join(' / '),
-    })
-  }
-  if (page.value.render_pass_scope) {
-    v.push({
-      id: 'render_pass_scope',
-      title: 'Render Pass Scope',
-      values: page.value.render_pass_scope,
-    })
-  }
-  if (page.value.video_coding_scope) {
-    v.push({
-      id: 'video_coding_scope',
-      title: 'Video Coding Scope',
-      values: page.value.video_coding_scope,
-    })
-  }
-  if (page.value.supported_queue_types) {
-    v.push({
-      id: 'supported_queue_types',
-      title: 'Queue Types',
-      values: page.value.supported_queue_types.join(' / '),
-    })
-  }
-  if (page.value.tasks) {
-    v.push({
-      id: 'tasks',
-      title: 'Tasks',
-      values: page.value.tasks.join(' / '),
-    })
+  for (const [key, val] of [
+    ['cmd_buf_level', 'Command Buffer Level'],
+    ['render_pass_scope', 'Render Pass Scope'],
+    ['video_coding_scope', 'Video Coding Scope'],
+    ['supported_queue_types', 'Queue Types'],
+    ['tasks', 'Tasks']
+  ]) {
+    if (page.value[key]) {
+      let values = page.value[key];
+      if (Array.isArray(values)) {
+        values = values.join(' / ');
+      }
+      v.push({
+        id: key,
+        title: val,
+        values
+      });
+    }
   }
   return v
 })
