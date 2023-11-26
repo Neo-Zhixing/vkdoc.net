@@ -9,6 +9,9 @@ export default defineNuxtConfig({
     'nuxt-simple-sitemap',
     //'@nuxtjs/web-vitals',
   ],
+  routeRules: {
+    '/man/**': { isr: true },
+  },
   site: {
     url: 'https://vkdoc.net',
   },
@@ -17,4 +20,11 @@ export default defineNuxtConfig({
       '/api/sitemap'
     ]
   },
+  nitro: {
+    prerender: {
+      routes: [
+        '/'
+      ]
+    }
+  }
 })

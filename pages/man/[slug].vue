@@ -100,10 +100,5 @@ useSeoMeta({
   ogTitle: page.value.title,
   ogDescription: page.value.description,
 })
-
-
-import { setResponseHeader } from 'h3';
-const event = useRequestEvent();
-event && setResponseHeader(event, 'Cache-Control', 'public, max-age=3600');
 </script>
 
