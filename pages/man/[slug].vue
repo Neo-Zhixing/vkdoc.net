@@ -1,5 +1,10 @@
 <template lang="pug">
 UContainer
+  UBreadcrumb(:links="links" v-if="page.parent" class="border-gray-200 dark:border-gray-700").py-4.border-b
+    template(#default="{ link, isActive, index, label }")
+      template(v-for="[i, item] in link.label.split(',').entries()" :key="item")
+        span(v-if="i > 0") |
+        span {{ item.trim() }}
   UPage
     UPageHeader(:headline="headline" :title="page.title" :description="page.description" :class="{ 'border-b-0': attributes.length > 0 }")
     div(class="relative flex border border-gray-200 dark:border-gray-700 rounded-md overflow-hidden not-prose" v-if="attributes.length > 0")
@@ -75,11 +80,30 @@ const attributes: Attribute[] = computed(() => {
   return v
 })
 
+const links = computed(() => {
+  if (!page.value) {
+    return []
+  }
+  const links = [{
+    label: 'Refpages',
+  }, {
+    label: page.value.parent
+  }, {
+    label: page.value.title
+  }];
+  return links
+})
+
 useSeoMeta({
   title: page.value.title,
   description: page.value.description,
   ogTitle: page.value.title,
   ogDescription: page.value.description,
 })
+
+
+import { setResponseHeader } from 'h3';
+const event = useRequestEvent();
+event && setResponseHeader(event, 'Cache-Control', 'public, max-age=3600');
 </script>
 
