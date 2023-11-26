@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   '@nuxt/content':
-    specifier: ^2.9.0
-    version: 2.9.0(nuxt@3.8.2)(vue@3.3.8)
+    specifier: npm:@nuxt/content-edge@latest
+    version: /@nuxt/content-edge@2.9.0-28344318.76dc891(nuxt@3.8.2)(vue@3.3.8)
   '@nuxt/ui-pro':
     specifier: npm:@nuxt/ui-pro-edge@latest
     version: /@nuxt/ui-pro-edge@0.4.2-28344427.b2c4557(nuxt@3.8.2)(vite@4.5.0)(vue@3.3.8)(webpack@5.89.0)
@@ -1095,11 +1095,11 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxt/content@2.9.0(nuxt@3.8.2)(vue@3.3.8):
-    resolution: {integrity: sha512-//mt++/AgOmjT6TpanugNJpJfx6q8g7wV8/vnk7vSSrrgki8tG6jpupuJmxHHB8DcqqTJfuBWFIdaLhv/Z9Gzg==}
+  /@nuxt/content-edge@2.9.0-28344318.76dc891(nuxt@3.8.2)(vue@3.3.8):
+    resolution: {integrity: sha512-SAHt3nJ2bLkz2nCMkxl8bB/vtkAhfsfDiuqyGW4Hye4U0B2HmIBeK7hGqTEI07kk7UoUkzgTOqjdea0DSgm6Kw==}
     dependencies:
       '@nuxt/kit': 3.8.2
-      '@nuxtjs/mdc': 0.2.7
+      '@nuxtjs/mdc': 0.2.8
       '@vueuse/core': 10.6.1(vue@3.3.8)
       '@vueuse/head': 2.0.0(vue@3.3.8)
       '@vueuse/nuxt': 10.6.1(nuxt@3.8.2)(vue@3.3.8)
@@ -1494,8 +1494,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/mdc@0.2.7:
-    resolution: {integrity: sha512-IWp3IA2HS8QlWvsD2s5o676OsrDK5gzmsLS9am0An//8OWRRtQy+7KwspCpElLgSvAwUfEPKishX2YKZXwYUnA==}
+  /@nuxtjs/mdc@0.2.8:
+    resolution: {integrity: sha512-NTvUsdN+MAe4MR1/OA61aYRGKGW3603kiZtWg3gNk2EEUTHSVqIhK9qpTtDtrCI6Cvg3dH3ZlqBPdE51U0Kq4A==}
     dependencies:
       '@nuxt/kit': 3.8.2
       '@types/hast': 3.0.3

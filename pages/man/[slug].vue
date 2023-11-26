@@ -3,7 +3,7 @@ UContainer
   UPage
     template(#left)
       UAside
-    UPageHeader(headline="Manual Page" :title="page.title" :description="page.description")
+    UPageHeader(:headline="headline" :title="page.title" :description="page.description")
     UPageBody(prose)
       ContentRenderer(v-if="page.body" :value="page")
 </template>
@@ -20,6 +20,26 @@ if (page.value._file && (route.path !== '/' + page.value._file.slice(0, -3))) {
     path: '/' + page.value._file.slice(0, -3)
   })
 }
+
+const headline = computed(() => {
+  const ty: string = page.value?.type;
+  if (ty) {
+    const name = {
+      handles: 'Handle',
+      protos: 'Function Prototype',
+      structs: 'Structures',
+      enums: 'Enum',
+      flags: 'Flags',
+      defines: 'Macro',
+      feature: 'Feature',
+      freeform: 'Manual'
+    }[ty];
+    if (name) {
+      return name;
+    }
+  }
+  return ty || 'Manual'
+})
 
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="border border-gray-200 dark:border-gray-700 rounded-md p-4">
+  <div class="border border-gray-200 dark:border-gray-700 rounded-md p-4 my-4">
     <h3 v-if="name" class="mt-0">{{ name }}</h3>
     <FieldGroup>
       <ContentSlot :use="$slots.default" />
