@@ -1,4 +1,5 @@
 {
+  "name": "vkdoc.net",
   "private": true,
   "type": "module",
   "scripts": {
