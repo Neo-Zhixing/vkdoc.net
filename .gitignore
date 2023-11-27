@@ -8,3 +8,4 @@ node_modules
 .env
 dist
 content/man/
+content/chapters/
