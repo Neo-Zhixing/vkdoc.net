@@ -13,7 +13,8 @@
     "@nuxt/content": "npm:@nuxt/content-edge@latest",
     "@nuxt/ui-pro": "npm:@nuxt/ui-pro-edge@latest",
     "nuxt": "^3.8.2",
-    "vite-plugin-pug": "^0.3.2",
-    "nuxt-simple-sitemap": "^4.1.6"
+    "nuxt-meilisearch": "^1.1.0",
+    "nuxt-simple-sitemap": "^4.1.6",
+    "vite-plugin-pug": "^0.3.2"
   }
 }
