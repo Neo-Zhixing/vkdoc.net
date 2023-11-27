@@ -39,6 +39,8 @@ const headline = computed(() => {
       flags: 'Flags',
       defines: 'Macro',
       feature: 'Feature',
+      funcpointers: 'Function Pointer',
+      builtins: 'SPIR-V Built-In',
       freeform: 'Manual'
     }[ty];
     if (name) {
@@ -47,7 +49,6 @@ const headline = computed(() => {
   }
   return ty || 'Manual'
 })
-
 type Attribute = {
   id: string,
   title: string,
