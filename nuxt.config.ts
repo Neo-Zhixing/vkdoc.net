@@ -14,16 +14,8 @@ export default defineNuxtConfig({
     hostUrl:  'https://search.vkdoc.net',
     searchApiKey: '3653930cde1ea048501e365b9cd24fc7df4a40248bb2ef185868468c3203ccf8',
   },
-  routeRules: {
-    '/man/**': { isr: true },
-  },
   site: {
     url: 'https://vkdoc.net',
-  },
-  sitemap: {
-    sources: [
-      '/api/sitemap'
-    ]
   },
   nitro: {
     prerender: {

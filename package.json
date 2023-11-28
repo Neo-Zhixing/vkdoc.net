@@ -7,7 +7,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "./populate-content.sh && nuxt prepare"
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
     "@nuxt/content": "npm:@nuxt/content-edge@latest",

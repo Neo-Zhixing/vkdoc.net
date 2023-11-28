@@ -16,16 +16,12 @@ UContainer
 </template>
 
 <script setup lang="ts">
+import type { ParsedContent } from '@nuxt/content/dist/runtime/types';
+
 const route = useRoute()
-const { data: page } = await useAsyncData(route.path, () => queryContent(route.path.toLowerCase()).findOne());
+const { data: page } = await useFetch<ParsedContent>(`https://data.vkdoc.net/man/${route.params.slug}.json`);
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
-}
-// ensure correct capitalization in path
-if (page.value._file && (route.path !== '/' + page.value._file.slice(0, -3))) {
-  navigateTo({
-    path: '/' + page.value._file.slice(0, -3)
-  })
 }
 
 const headline = computed(() => {
