@@ -1,3 +1,6 @@
+<script setup lang="ts">
+</script>
+
 <template lang="pug">
 UHeader
   template(#logo)
@@ -11,9 +14,6 @@ UMain
   slot
 UFooter
 </template>
-
-<script setup lang="ts">
-</script>
 
 <style scoped>
 .header-icon {

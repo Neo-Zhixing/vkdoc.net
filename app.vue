@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { addAPIProvider } from '@iconify/vue'
+
+addAPIProvider('dust', {
+  resources: ['https://icon.dust.rs'],
+})
+
+useHead({
+  titleTemplate: '%s - VulkanHub',
+})
+</script>
+
 <template>
   <NuxtLayout>
     <NuxtLoadingIndicator />
@@ -7,14 +19,3 @@
     <DocSearch />
   </ClientOnly>
 </template>
-
-<script setup lang="ts">
-import { addAPIProvider } from '@iconify/vue'
-addAPIProvider('dust', {
-  resources: ['https://icon.dust.rs']
-})
-
-useHead({
-  titleTemplate: '%s - VulkanHub',
-})
-</script>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Combobox as HCombobox, ComboboxInput as HComboboxInput, ComboboxOptions as HComboboxOptions, ComboboxOption as HComboboxOption } from '@headlessui/vue'
+import { Combobox as HCombobox, ComboboxInput as HComboboxInput, ComboboxOptions as HComboboxOptions } from '@headlessui/vue'
+
 const breakpoints = useBreakpoints({ mobile: 640 })
 
 // replace of the ui-pro one
@@ -24,7 +25,7 @@ const debouncedSearch = useDebounceFn(async (t: string) => {
     attributesToHighlight: ['title', 'content'],
     highlightPreTag: '<mark>',
     highlightPostTag: '</mark>',
-  })).hits.map((page) => ({
+  })).hits.map(page => ({
     id: page.url as string,
     label: rearrange(page._formatted?.title ?? page.title),
     suffix: rearrange(page._formatted?.content ?? page.content),
@@ -44,17 +45,17 @@ watch(query, async (q) => {
 })
 
 function rearrange(s: string): string {
-  let words = s.split(' ')
-  let wordIndex = words
-    .map((item) => item.toLowerCase())
+  const words = s.split(' ')
+  const wordIndex = words
+    .map(item => item.toLowerCase())
     .findIndex(word => word.includes('<mark>'))
 
   if (wordIndex === -1) {
-    return s;
+    return s
   }
 
-  let result = words.slice(wordIndex).join(' ');
-  return result;
+  const result = words.slice(wordIndex).join(' ')
+  return result
 }
 </script>
 
@@ -64,7 +65,7 @@ function rearrange(s: string): string {
     :fullscreen="isXs"
     v-bind="$attrs"
     :ui="{
-      base: 'sm:!max-w-3xl h-screen sm:h-[28rem] rounded-none sm:rounded-lg sm:my-8'
+      base: 'sm:!max-w-3xl h-screen sm:h-[28rem] rounded-none sm:rounded-lg sm:my-8',
     }"
   >
     <HCombobox
@@ -91,7 +92,8 @@ function rearrange(s: string): string {
           color="gray"
           variant="link"
           :padded="false"
-          @click="isDocsSearchModalOpen = false" />
+          @click="isDocsSearchModalOpen = false"
+        />
       </div>
       <div class="flex flex-col min-h-[20rem]">
         <div
@@ -126,12 +128,12 @@ function rearrange(s: string): string {
               @click="isDocsSearchModalOpen = false"
             >
               <span
-                v-html="page.label"
                 class="[&_mark]:font-bold [&_mark]:bg-transparent [&_mark]:text-gray-900 [&_mark]:dark:text-white"
+                v-html="page.label"
               />
               <span
-                v-html="page.suffix"
                 class="truncate text-sm text-gray-400 [&_mark]:bg-primary-400"
+                v-html="page.suffix"
               />
             </NuxtLink>
           </div>

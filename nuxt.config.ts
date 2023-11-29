@@ -12,20 +12,20 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
   ],
   meilisearch: {
-    hostUrl:  'https://search.vkdoc.net',
+    hostUrl: 'https://search.vkdoc.net',
     searchApiKey: '3653930cde1ea048501e365b9cd24fc7df4a40248bb2ef185868468c3203ccf8',
   },
   site: {
     url: 'https://vkdoc.net',
   },
   routeRules: {
-    '/chapters': { redirect: '/chapters/0' }
+    '/chapters': { redirect: '/chapters/0' },
   },
   nitro: {
     prerender: {
       routes: [
-        '/'
-      ]
-    }
-  }
+        '/',
+      ],
+    },
+  },
 })
