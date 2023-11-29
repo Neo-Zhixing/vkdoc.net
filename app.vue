@@ -4,7 +4,7 @@
     <NuxtPage />
   </NuxtLayout>
   <ClientOnly>
-    <LazyUDocsSearch hide-color-mode />
+    <DocSearch />
   </ClientOnly>
 </template>
 

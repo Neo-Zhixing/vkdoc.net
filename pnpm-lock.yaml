@@ -19,6 +19,12 @@ devDependencies:
   '@nuxt/ui-pro':
     specifier: npm:@nuxt/ui-pro-edge@latest
     version: /@nuxt/ui-pro-edge@0.4.2-28344427.b2c4557(nuxt@3.8.2)(vite@4.5.0)(vue@3.3.8)(webpack@5.89.0)
+  '@vueuse/core':
+    specifier: ^10.6.1
+    version: 10.6.1(vue@3.3.8)
+  '@vueuse/nuxt':
+    specifier: ^10.6.1
+    version: 10.6.1(nuxt@3.8.2)(vue@3.3.8)
   nuxt:
     specifier: ^3.8.2
     version: 3.8.2(eslint@8.54.0)(typescript@5.3.2)(vite@4.5.0)

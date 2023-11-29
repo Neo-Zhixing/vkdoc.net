@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     'nuxt-simple-sitemap',
     'nuxt-meilisearch',
     '@nuxtjs/web-vitals',
+    '@vueuse/nuxt',
   ],
   meilisearch: {
     hostUrl:  'https://search.vkdoc.net',
