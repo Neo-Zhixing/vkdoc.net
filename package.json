@@ -16,5 +16,9 @@
     "nuxt-meilisearch": "^1.1.0",
     "nuxt-simple-sitemap": "^4.1.6",
     "vite-plugin-pug": "^0.3.2"
+  },
+  "dependencies": {
+    "@nuxtjs/web-vitals": "^0.2.6",
+    "@vercel/analytics": "^1.1.1"
   }
 }
