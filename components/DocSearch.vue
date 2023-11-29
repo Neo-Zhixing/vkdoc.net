@@ -16,19 +16,21 @@ const result = ref<{
 }[]>([])
 
 const query = ref('')
+const active = ref(false)
 
 const debouncedSearch = useDebounceFn(async (t: string) => {
   loading.value = true
   result.value = (await search(t, {
-    attributesToHighlight: ['content'],
+    attributesToHighlight: ['title', 'content'],
     highlightPreTag: '<mark>',
     highlightPostTag: '</mark>',
   })).hits.map((page) => ({
     id: page.url as string,
-    label: page.title as string,
-    suffix: rearrange(page._formatted?.content ?? page.content, t),
+    label: rearrange(page._formatted?.title ?? page.title),
+    suffix: rearrange(page._formatted?.content ?? page.content),
     url: page.url as string,
   }))
+  active.value = true
   loading.value = false
 }, 200, { maxWait: 500 })
 
@@ -41,20 +43,17 @@ watch(query, async (q) => {
   }
 })
 
-function rearrange(s: string, q: string): string {
+function rearrange(s: string): string {
   let words = s.split(' ')
   let wordIndex = words
     .map((item) => item.toLowerCase())
-    .findIndex(word => word.includes(q.toLowerCase()))
+    .findIndex(word => word.includes('<mark>'))
 
   if (wordIndex === -1) {
     return s;
   }
 
   let result = words.slice(wordIndex).join(' ');
-  if (q.toLowerCase() == 'ah') {
-    console.log(s, q, result)
-  }
   return result;
 }
 </script>
@@ -64,8 +63,14 @@ function rearrange(s: string, q: string): string {
     v-model="isDocsSearchModalOpen"
     :fullscreen="isXs"
     v-bind="$attrs"
+    :ui="{
+      base: 'sm:!max-w-3xl h-screen sm:h-[28rem] rounded-none sm:rounded-lg sm:my-8'
+    }"
   >
-    <HCombobox>
+    <HCombobox
+      as="div"
+      class="flex flex-col flex-1 min-h-0 divide-y divide-gray-100 dark:divide-gray-800"
+    >
       <div class="relative flex items-center">
         <UIcon
           :name="loading ? 'i-heroicons-arrow-path-20-solid' : 'i-heroicons-magnifying-glass-20-solid'"
@@ -74,7 +79,7 @@ function rearrange(s: string, q: string): string {
           class="pointer-events-none absolute start-4 text-gray-400 dark:text-gray-500 h-5 w-5"
         />
         <HComboboxInput
-          class="flex-1 h-12 px-4 ps-12 border-none cursor-text overflow-hidden focus:outline-none"
+          class="flex-1 placeholder-gray-400 dark:placeholder-gray-500 bg-transparent border-0 text-gray-900 dark:text-white focus:ring-0 focus:outline-none sm:text-sm h-[--header-height] sm:h-12 px-4 ps-11"
           placeholder="Search..."
           autocomplete="off"
           @change="query = $event.target.value"
@@ -90,7 +95,7 @@ function rearrange(s: string, q: string): string {
       </div>
       <div class="flex flex-col min-h-[20rem]">
         <div
-          v-if="query === ''"
+          v-if="query === '' || !active"
           class="flex-1 flex flex-col items-center justify-center pointer-events-none gap-4"
         />
         <div
@@ -108,32 +113,30 @@ function rearrange(s: string, q: string): string {
         </div>
         <HComboboxOptions
           v-else
-          class="p-4 grid gap-2 overflow-y-auto max-h-full"
+          class="p-4 grid gap-2 overflow-y-auto max-h-full relative flex-1 scroll-py-10"
         >
-          <NuxtLink
+          <div
             v-for="page in result"
             :key="page.id"
-            :to="page.url"
-            @click="isDocsSearchModalOpen = false"
-            class="select-none grid items-center gap-2 p-2 rounded-md hover:bg-gray-100"
+            class="rounded-md px-2 py-1.5 hover:bg-gray-100 hover:dark:bg-gray-800 text-gray-900 dark:text-white"
           >
-            <h3 class="font-bold">
-              {{ page.label }}
-            </h3>
-            <span
-              v-html="page.suffix"
-              class="truncate text-sm text-gray-400 [&_mark]:bg-primary-200"
-            />
-          </NuxtLink>
+            <NuxtLink
+              :to="page.url"
+              class="select-none grid"
+              @click="isDocsSearchModalOpen = false"
+            >
+              <span
+                v-html="page.label"
+                class="[&_mark]:font-bold [&_mark]:bg-transparent [&_mark]:text-gray-900 [&_mark]:dark:text-white"
+              />
+              <span
+                v-html="page.suffix"
+                class="truncate text-sm text-gray-400 [&_mark]:bg-primary-400"
+              />
+            </NuxtLink>
+          </div>
         </HComboboxOptions>
-
       </div>
     </HCombobox>
   </UModal>
 </template>
-
-<style>
-.doc-search-result-box > div > div > div > div > div {
-  display: grid;
-}
-</style>
