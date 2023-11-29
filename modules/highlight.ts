@@ -14,10 +14,21 @@ export default defineNuxtModule({
         nuxt.options.nitro.prerender.routes = nuxt.options.nitro.prerender.routes || [];
         const routes = new Set(nuxt.options.nitro.prerender.routes);
 
-        const results = await fetch('https://data.vkdoc.net/man/index.json');
-        const resultJson = await results.json();
-        for (const item of resultJson) {
-            routes.add('/man/' + item.id);
+        {
+            // Add refpages
+            const results = await fetch('https://data.vkdoc.net/man/index.json');
+            const resultJson = await results.json();
+            for (const item of resultJson) {
+                routes.add('/man/' + item.id);
+            }
+        }
+        {
+            // Add chapters
+            const results = await fetch('https://data.vkdoc.net/chapters/index.json');
+            const resultJson = await results.json();
+            for (const item of resultJson) {
+                routes.add('/chapters/' + item.index);
+            }
         }
         nuxt.options.nitro.prerender.routes = Array.from(routes);
     }

@@ -17,6 +17,9 @@ export default defineNuxtConfig({
   site: {
     url: 'https://vkdoc.net',
   },
+  routeRules: {
+    '/chapters': { redirect: '/chapters/0' }
+  },
   nitro: {
     prerender: {
       routes: [

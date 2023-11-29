@@ -15,6 +15,6 @@ addAPIProvider('dust', {
 })
 
 useHead({
-  titleTemplate: '%s - vkdoc.net',
+  titleTemplate: '%s - VulkanHub',
 })
 </script>

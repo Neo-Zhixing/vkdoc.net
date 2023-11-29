@@ -1,7 +1,7 @@
 <template lang="pug">
 UHeader
   template(#logo)
-    | Vulkan Docs
+    | VulkanHub
   template(#right)
     UDocsSearchButton(:label="null")
     UColorModeButton

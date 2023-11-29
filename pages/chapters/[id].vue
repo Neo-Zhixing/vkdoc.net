@@ -25,7 +25,7 @@ const navLinks = computed(() => {
     return 
   }
   const specs =  index.value.map((i: any) => ({
-    label: i.title,
+    label: i.index + '. ' + i.title,
     to: '/chapters/' + i.index,
   }));
   return [{
@@ -35,4 +35,10 @@ const navLinks = computed(() => {
   }]
 })
 
+useSeoMeta({
+  title: page.value.title,
+  description: page.value.description,
+  ogTitle: page.value.title,
+  ogDescription: page.value.description,
+})
 </script>
