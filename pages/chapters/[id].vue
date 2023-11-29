@@ -3,9 +3,11 @@ UContainer
   UPage
     template(#left)
       UAside
-        UNavigationTree(:links="navLinks" default-open :multiple="false")
+        UNavigationTree(:links="navLinks" :default-open="false" :multiple="false")
     UPageBody(prose)
       ContentRenderer(v-if="page.body" :value="page")
+    template(v-if="page.body?.toc?.links?.length" #right)
+      UDocsToc(:links="page.body.toc.links")
 </template>
 
 
@@ -29,7 +31,6 @@ const navLinks = computed(() => {
   return [{
     label: 'Vulkan Specification',
     icon: 'i-heroicons-book-open',
-    to: '/chapters',
     children: specs
   }]
 })
