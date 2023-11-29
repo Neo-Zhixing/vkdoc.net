@@ -6,7 +6,9 @@ export default defineNuxtModule({
     async setup(_, nuxt) {
         // Set the code highlight configurations
         if (nuxt.options.content?.highlight) {
-            nuxt.options.content.highlight.preload = ['rust', 'c']
+            // preload options here apply to md files in /content only.
+            // Pre-compiled docs AST does not use.
+            nuxt.options.content.highlight.preload = []
         }
         nuxt.options.nitro.prerender = nuxt.options.nitro.prerender || {};
         nuxt.options.nitro.prerender.routes = nuxt.options.nitro.prerender.routes || [];

@@ -37,6 +37,7 @@ const headline = computed(() => {
       feature: 'Feature',
       funcpointers: 'Function Pointer',
       builtins: 'SPIR-V Built-In',
+      basetypes: 'Basetype',
       freeform: 'Manual'
     }[ty];
     if (name) {
