@@ -1,5 +1,9 @@
 <template>
-  <main>
-    <ContentDoc />
-  </main>
+  <UContainer>
+    <UPage>
+      <UPageBody prose>
+        <ContentDoc />
+      </UPageBody>
+    </UPage>
+  </UContainer>
 </template>

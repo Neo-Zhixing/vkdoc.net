@@ -15,7 +15,14 @@ UHeader
     LazyUNavigationTree(:multiple="false" :links="navLinks")
 UMain
   slot
-UFooter
+UFooter(:links="links")
+  template(#left)
+    .prose-sm.prose-grey.prose(class="dark:prose-invert")
+      | A redistribution of #[a(href="") Vulkan Specification] under #[a(href="https://creativecommons.org/licenses/by/4.0/") CC-BY-4.0] by #[a(href="https://github.com/Neo-Zhixing/") Neo].
+      br
+      | © The Khronos® Group Inc. {{ new Date().getFullYear() }}. All rights reserved.
+      br
+      NuxtLink(to="/copyright") Copyright Notice
 </template>
 
 <style scoped>
