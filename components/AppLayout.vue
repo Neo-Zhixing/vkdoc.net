@@ -15,7 +15,7 @@ UHeader
     LazyUNavigationTree(:multiple="false" :links="navLinks")
 UMain
   slot
-UFooter(:links="links")
+UFooter
   template(#left)
     .prose-sm.prose-grey.prose(class="dark:prose-invert")
       | A redistribution of #[a(href="") Vulkan Specification] under #[a(href="https://creativecommons.org/licenses/by/4.0/") CC-BY-4.0] by #[a(href="https://github.com/Neo-Zhixing/") Neo].
