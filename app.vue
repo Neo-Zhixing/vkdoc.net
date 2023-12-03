@@ -19,3 +19,10 @@ useHead({
     <DocSearch />
   </ClientOnly>
 </template>
+
+<style>
+html, body {
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+}
+</style>

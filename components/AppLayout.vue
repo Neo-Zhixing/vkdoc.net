@@ -17,7 +17,7 @@ UMain
   slot
 UFooter
   template(#left)
-    .prose-sm.prose-grey.prose(class="dark:prose-invert")
+    .prose-sm.prose-grey.prose.footer-copyright(class="dark:prose-invert text-xs")
       | A redistribution of #[a(href="") Vulkan Specification] under #[a(href="https://creativecommons.org/licenses/by/4.0/") CC-BY-4.0] by #[a(href="https://github.com/Neo-Zhixing/") Neo].
       br
       | © The Khronos® Group Inc. {{ new Date().getFullYear() }}. All rights reserved.
