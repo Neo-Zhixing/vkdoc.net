@@ -10,7 +10,7 @@ UHeader
     UDocsSearchButton
   template(#right)
     UColorModeButton
-    UButton(to="https://github.com/Neo-Zhixing/vkdoc.net" target="_blank" icon="i-simple-icons-github" color="gray" variant="ghost")
+    UButton(to="https://github.com/Neo-Zhixing/vkdoc.net" target="_blank" icon="@dust:fa6-pro-brands:github" color="gray" variant="ghost")
   template(#panel)
     LazyUNavigationTree(:multiple="false" :links="navLinks")
 UMain
