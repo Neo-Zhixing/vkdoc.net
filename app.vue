@@ -15,7 +15,7 @@ useHead({
 </template>
 
 <style>
-html, body {
+body {
   overflow-x: hidden;
   overflow-wrap: break-word;
 }
