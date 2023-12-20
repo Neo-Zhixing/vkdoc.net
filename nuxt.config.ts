@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     'nuxt-meilisearch',
     '@nuxtjs/web-vitals',
     '@vueuse/nuxt',
+    '@nuxtjs/plausible',
   ],
   components: {
     global: true,
@@ -23,6 +24,9 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/chapters': { redirect: '/chapters/0' },
+  },
+  plausible: {
+    apiHost: 'https://analytics.vkdoc.net'
   },
   nitro: {
     prerender: {

@@ -12,13 +12,13 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@nuxtjs/web-vitals": "^0.2.6",
-    "@vercel/analytics": "^1.1.1"
+    "@nuxtjs/web-vitals": "^0.2.6"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.1.1",
     "@nuxt/content": "npm:@nuxt/content-edge@latest",
     "@nuxt/ui-pro": "npm:@nuxt/ui-pro-edge@latest",
+    "@nuxtjs/plausible": "^0.2.4",
     "@vueuse/core": "^10.6.1",
     "@vueuse/nuxt": "^10.6.1",
     "eslint": "^8.54.0",
