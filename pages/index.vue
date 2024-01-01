@@ -3,6 +3,7 @@ useSeoMeta({
   title: 'HomePage',
   description: 'Better Vulkan Documetation starts here',
   ogTitle: 'VulkanHub',
+  ogSiteName: 'VulkanHub',
   ogDescription: 'Better Vulkan Documetation starts here',
 })
 </script>

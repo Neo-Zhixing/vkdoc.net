@@ -13,6 +13,7 @@ useSeoMeta({
   title: page.value.title,
   description: page.value.description,
   ogTitle: page.value.title,
+  ogSiteName: 'VulkanHub',
   ogDescription: page.value.description,
 })
 </script>
