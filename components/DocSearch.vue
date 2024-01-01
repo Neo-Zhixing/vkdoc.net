@@ -116,13 +116,17 @@ function rearrange(s: string): string {
         <HComboboxOptions
           v-else
           class="p-4 flex-1 flex flex-col gap-2 overflow-y-auto max-h-full relative scroll-py-10"
-          :style="{ paddingBottom: result.length <= 2 ? '0.5rem' : '0' }"
+          :class="{
+            'pb-2': result.length <= 2,
+          }"
         >
           <div
             v-for="page in result"
             :key="page.id"
             class="rounded-md px-2 py-1.5 hover:bg-gray-100 hover:dark:bg-gray-800 text-gray-900 dark:text-white"
-            :style="{ maxHeight: result.length <= 2 ? '4rem' : 'none' }"
+            :class="{
+              'max-h-16': result.length <= 2,
+            }"
           >
             <NuxtLink
               :to="page.url"
