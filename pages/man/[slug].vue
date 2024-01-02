@@ -85,7 +85,31 @@ useSeoMeta({
   ogTitle: page.value.title,
   ogSiteName: 'VulkanHub',
   ogDescription: page.value.description,
+  ogType: 'article'
 })
+
+const result = page && {
+    "@context": "http://schema.org/",
+    "@type": "SoftwareSourceCode",
+    "name": page.value.title,
+    "codeSampleType": "definition",
+    "programmingLanguage": "C",
+    "abstract": page.value.description,
+    "copyrightHolder": {
+      "@type": "Organization",
+      "name": "Khronos Group",
+      "url": "https://www.khronos.org/"
+    }
+  }
+
+useHead({
+  script: [
+    {
+        type: 'application/ld-json',
+        innerHTML: result ? JSON.stringify(result) : '',
+    },
+  ]
+});
 </script>
 
 <template lang="pug">
