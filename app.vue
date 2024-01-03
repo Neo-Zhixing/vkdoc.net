@@ -2,6 +2,12 @@
 useHead({
   titleTemplate: '%s - VulkanHub',
 })
+
+import { addAPIProvider } from '@iconify/vue'
+
+addAPIProvider('dust', {
+  resources: ['https://icon.dust.rs'],
+})
 </script>
 
 <template>
