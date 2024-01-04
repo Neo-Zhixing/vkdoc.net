@@ -129,6 +129,7 @@ function rearrange(s: string): string {
             }"
           >
             <NuxtLink
+              no-prefetch
               :to="page.url"
               class="select-none grid"
               @click="isDocsSearchModalOpen = false"

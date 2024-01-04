@@ -12,6 +12,7 @@ export default async function useNavLinks(){
     const specs = index.value.map((i: any) => ({
       label: `${i.index}. ${i.title}`,
       to: `/chapters/${i.index}`,
+      noPrefetch: true,
     }))
     return [{
       label: 'Vulkan Specification',

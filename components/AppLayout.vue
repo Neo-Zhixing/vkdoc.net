@@ -22,7 +22,7 @@ UFooter
       br
       | © The Khronos® Group Inc. {{ new Date().getFullYear() }}. All rights reserved.
       br
-      NuxtLink(to="/copyright") Copyright Notice
+      NuxtLink(to="/copyright" no-prefetch) Copyright Notice
 </template>
 
 <style scoped>
