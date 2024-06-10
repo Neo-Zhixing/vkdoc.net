@@ -4,7 +4,7 @@ import { Combobox as HCombobox, ComboboxInput as HComboboxInput, ComboboxOptions
 const breakpoints = useBreakpoints({ mobile: 640 })
 
 // replace of the ui-pro one
-const { isDocsSearchModalOpen } = useUIState()
+const { isContentSearchModalOpen } = useUIState()
 const isXs = breakpoints.smaller('mobile')
 const loading = ref(false)
 const { search } = useMeiliSearch('refpages')
@@ -61,7 +61,7 @@ function rearrange(s: string): string {
 
 <template>
   <UModal
-    v-model="isDocsSearchModalOpen"
+    v-model="isContentSearchModalOpen"
     :fullscreen="isXs"
     v-bind="$attrs"
     :ui="{
@@ -92,7 +92,7 @@ function rearrange(s: string): string {
           color="gray"
           variant="link"
           :padded="false"
-          @click="isDocsSearchModalOpen = false"
+          @click="isContentSearchModalOpen = false"
         />
       </div>
       <div class="flex flex-col min-h-[20rem]">
@@ -132,7 +132,7 @@ function rearrange(s: string): string {
               no-prefetch
               :to="page.url"
               class="select-none grid"
-              @click="isDocsSearchModalOpen = false"
+              @click="isContentSearchModalOpen = false"
             >
               <span
                 class="[&_mark]:font-bold [&_mark]:bg-transparent [&_mark]:text-gray-900 [&_mark]:dark:text-white"

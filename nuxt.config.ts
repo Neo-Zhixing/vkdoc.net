@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
     '@nuxt/ui',
-    'nuxt-simple-sitemap',
+    '@nuxtjs/sitemap',
     'nuxt-meilisearch',
     '@nuxtjs/web-vitals',
     '@vueuse/nuxt',
