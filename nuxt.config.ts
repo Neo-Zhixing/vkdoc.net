@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   extends: ['@nuxt/ui-pro'],
+  css: ['~/assets/docsearch.css'],
   modules: [
     '@nuxt/content',
     '@nuxt/ui',
@@ -10,10 +11,18 @@ export default defineNuxtConfig({
     '@nuxtjs/web-vitals',
     '@vueuse/nuxt',
     '@nuxtjs/plausible',
+    '@nuxtjs/algolia',
   ],
+  algolia: {
+    apiKey: '8a0e8ff6ce82bb377db643e2203d4cc9',
+    applicationId: 'A96G3B0V8P',
+    docSearch: {
+      indexName: 'vknet',
+    }
+  },
   components: {
     global: true,
-    dirs: ['~/override-components', '~/components'],
+    dirs: ['~/components'],
   },
   meilisearch: {
     hostUrl: 'https://search.vkdoc.net',
