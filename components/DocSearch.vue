@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { Combobox as HCombobox, ComboboxInput as HComboboxInput, ComboboxOptions as HComboboxOptions } from '@headlessui/vue'
 
-type SearchItem = {
-  type: 'content' | 'lvl1' | 'lvl2' | 'lvl3' | 'lvl4' | 'lvl5' | 'lvl6',
-  content: string | null,
+interface SearchItem {
+  type: 'content' | 'lvl1' | 'lvl2' | 'lvl3' | 'lvl4' | 'lvl5' | 'lvl6'
+  content: string | null
   hierarchy: {
-    lvl1?: string,
-    lvl2?: string,
-    lvl3?: string,
-    lvl4?: string,
-    lvl5?: string,
-    lvl6?: string,
-  },
+    lvl1?: string
+    lvl2?: string
+    lvl3?: string
+    lvl4?: string
+    lvl5?: string
+    lvl6?: string
+  }
   url: string
-};
+}
 const { result, search } = useAlgoliaSearch<SearchItem>('vknet')
 const breakpoints = useBreakpoints({ mobile: 640 })
 
@@ -28,10 +28,10 @@ const active = ref(false)
 const debouncedSearch = useDebounceFn(async (t: string) => {
   loading.value = true
 
-  const snippetLength = 10;
+  const snippetLength = 10
   await search({
     query: t,
-    //attributesToHighlight: ['title', 'content'],
+    // attributesToHighlight: ['title', 'content'],
     requestOptions: {
       highlightPreTag: '<mark>',
       highlightPostTag: '</mark>',
@@ -58,7 +58,7 @@ const debouncedSearch = useDebounceFn(async (t: string) => {
         `hierarchy.lvl6:${snippetLength}`,
         `content:${snippetLength}`,
       ],
-    }
+    },
   })
   console.log(result)
   active.value = true

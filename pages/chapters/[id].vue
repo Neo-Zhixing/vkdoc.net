@@ -7,13 +7,13 @@ if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
 
-const navLinks = await useNavLinks();
+const navLinks = await useNavLinks()
 
 useSeoMeta({
   title: page.value.title,
   ogTitle: page.value.title,
   ogSiteName: 'VulkanHub',
-  ogType: 'article'
+  ogType: 'article',
 })
 </script>
 

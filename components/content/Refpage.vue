@@ -2,28 +2,29 @@
 const props = defineProps<{
   name: string
   type: string
-}>();
+}>()
 
 const normalizedName = computed(() => {
-  return props.name.replaceAll('\\_', '_');
+  return props.name.replaceAll('\\_', '_')
 })
 
-const state: Ref<'close' | 'ready' | 'pending' | 'initial'> = ref('close');
+const state: Ref<'close' | 'ready' | 'pending' | 'initial'> = ref('close')
 
 function onPendingStateChange(isPending: boolean) {
-  state.value = isPending ? 'pending' : 'ready';
+  state.value = isPending ? 'pending' : 'ready'
 }
 
 function onClick() {
   if (state.value === 'close') {
-    state.value = 'initial';
+    state.value = 'initial'
     setTimeout(() => {
       if (state.value === 'initial') {
-        state.value = 'pending';
+        state.value = 'pending'
       }
-    }, 400);
-  } else {
-    state.value = 'close';
+    }, 400)
+  }
+  else {
+    state.value = 'close'
   }
 }
 
@@ -32,7 +33,7 @@ const iconName = computed(() => {
     ready: 'i-heroicons-chevron-down-20-solid',
     initial: 'i-heroicons-chevron-up-20-solid',
     close: 'i-heroicons-chevron-up-20-solid',
-    pending: 'eos-icons:loading'
+    pending: 'eos-icons:loading',
   }[state.value]
 })
 </script>
@@ -44,14 +45,14 @@ const iconName = computed(() => {
         <b class="mr-4 text-base refpage-main-header">{{ normalizedName }}</b>
         <ContentSlot :use="$slots.default" unwrap="p" />
       </div>
-        <UButton class="sm:hidden" target="_blank" color="gray" variant="solid" :to="'/man/' + normalizedName" icon="i-material-symbols-open-in-new-rounded" />
-        <UButton class="hidden sm:block" target="_blank" color="gray" variant="link" :to="'/man/' + normalizedName" label="Open" icon="i-material-symbols-open-in-new-rounded" />
-        <UIcon class="text-2xl shrink-0 !hidden sm:!block" :name="iconName" />
-      </div>
-    <RefpageContent :name="normalizedName" v-if="state !== 'close'" @pending="onPendingStateChange"/>
+      <UButton class="sm:hidden" target="_blank" color="gray" variant="solid" :to="`/man/${normalizedName}`" icon="i-material-symbols-open-in-new-rounded" />
+      <UButton class="hidden sm:block" target="_blank" color="gray" variant="link" :to="`/man/${normalizedName}`" label="Open" icon="i-material-symbols-open-in-new-rounded" />
+      <UIcon class="text-2xl shrink-0 !hidden sm:!block" :name="iconName" />
+    </div>
+    <RefpageContent v-if="state !== 'close'" :name="normalizedName" @pending="onPendingStateChange" />
     <UDivider v-if="state === 'ready'" />
-    <div class="p-4 flex justify-end not-prose" v-if="state === 'ready'">
-      <UButton target="_blank" :to="'/man/' + normalizedName" label="Open in New Page" icon="i-material-symbols-open-in-new-rounded" color="primary" variant="link" />
+    <div v-if="state === 'ready'" class="p-4 flex justify-end not-prose">
+      <UButton target="_blank" :to="`/man/${normalizedName}`" label="Open in New Page" icon="i-material-symbols-open-in-new-rounded" color="primary" variant="link" />
       <UButton class="ml-2" label="Close" icon="i-heroicons-chevron-up-20-solid" color="gray" @click="state = 'close'" />
     </div>
   </div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const navLinks = await useNavLinks();
+const navLinks = await useNavLinks()
 </script>
 
 <template lang="pug">

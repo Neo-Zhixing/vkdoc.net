@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { addAPIProvider } from '@iconify/vue'
+
 useHead({
   titleTemplate: '%s - VulkanHub',
 })
-
-import { addAPIProvider } from '@iconify/vue'
 
 addAPIProvider('dust', {
   resources: ['https://icon.dust.rs'],

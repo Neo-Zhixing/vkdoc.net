@@ -18,7 +18,7 @@ export default defineNuxtConfig({
     applicationId: 'A96G3B0V8P',
     docSearch: {
       indexName: 'vknet',
-    }
+    },
   },
   components: {
     global: true,
@@ -37,13 +37,16 @@ export default defineNuxtConfig({
     '/man/**': { isr: true, prerender: true },
   },
   plausible: {
-    apiHost: 'https://analytics.vkdoc.net'
+    apiHost: 'https://analytics.vkdoc.net',
+  },
+  router: {
+    prefetchLinks: false,
   },
   nitro: {
     prerender: {
       routes: [
         '/',
-        '/copyright'
+        '/copyright',
       ],
     },
   },
