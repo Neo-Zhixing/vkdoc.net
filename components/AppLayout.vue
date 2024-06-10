@@ -7,7 +7,7 @@ UHeader
   template(#logo)
     | VulkanHub
   template(#center)
-    AlgoliaDocSearch
+    UContentSearchButton
   template(#right)
     UColorModeButton
     UButton(to="https://github.com/Neo-Zhixing/vkdoc.net" target="_blank" icon="@dust:fa6-pro-brands:github" color="gray" variant="ghost")
