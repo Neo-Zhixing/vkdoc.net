@@ -1,42 +1,31 @@
-# Content v2 Minimal Starter
+# VulkanHub
+Better Vulkan Documentation starts here
 
-Look at the [Content documentation](https://content.nuxt.com/) to learn more.
+VulkanHub is a project that takes the official Vulkan documentation and transforms it into a more user-friendly and accessible website. Our goal is to make learning Vulkan easier and more enjoyable for developers of all levels.
 
-## Setup
+## Features
+- Improved Navigation: VulkanHub provides a more intuitive navigation system compared to the official documentation, allowing you to quickly find the information you need.
+- Enhanced Search: Our robust search functionality lets you easily locate specific topics within the Vulkan documentation.
+- Dark Mode: I want my dark mode.
+- Quickly looking up validation error codes: The validation layers gives you an error code `VUID-vkCmdClearDepthStencilImage-imageLayout-parameter`. Simply put that into the search box, and we will take you to exactly where it's defined.
 
+## Development
 Make sure to install the dependencies:
 
 ```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
 pnpm install
 ```
-
-## Development Server
 
 Start the development server on http://localhost:3000
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
-## Production
+VulkanHub is currently under development. Website contents are automatically generated from
+the [official documentation](https://github.com/KhronosGroup/Vulkan-Docs) and the `vk.xml` file.
 
-Build the application for production:
+If there are any errors in the generation process, please open an issue and we will take a look.
 
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## License
+VulkanHub is licensed under the MIT License.

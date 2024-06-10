@@ -26,5 +26,5 @@ UContainer
     UPageBody(prose)
       ContentRenderer(v-if="page.body" :value="page")
     template(v-if="page.body?.toc?.links?.length" #right)
-      UDocsToc(:links="page.body.toc.links")
+      UContentToc(:links="page.body.toc.links")
 </template>
