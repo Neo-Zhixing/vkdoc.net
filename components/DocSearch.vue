@@ -202,7 +202,7 @@ defineShortcuts({
           >
             <div class="cursor-pointer" :class="[commandPaletteUi.group.command.base, active ? commandPaletteUi.group.command.active : commandPaletteUi.group.command.inactive]">
               <div :class="commandPaletteUi.group.command.container">
-                <UIcon dynamic :name="entryTypeToIcon(hit.type)" :class="[commandPaletteUi.group.command.icon.base, active ? commandPaletteUi.group.command.icon.active : commandPaletteUi.group.command.icon.inactive]" aria-hidden="true" />
+                <UIcon :name="entryTypeToIcon(hit.type)" :class="[commandPaletteUi.group.command.icon.base, active ? commandPaletteUi.group.command.icon.active : commandPaletteUi.group.command.icon.inactive]" aria-hidden="true" />
 
                 <div :class="[commandPaletteUi.group.command.label]">
                   <!-- eslint-disable-next-line vue/no-v-html -->

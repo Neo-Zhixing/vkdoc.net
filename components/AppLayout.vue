@@ -1,7 +1,3 @@
-<script setup lang="ts">
-const navLinks = await useNavLinks()
-</script>
-
 <template lang="pug">
 UHeader
   template(#logo)
@@ -12,7 +8,7 @@ UHeader
     UColorModeButton
     UButton(to="https://github.com/Neo-Zhixing/vkdoc.net" target="_blank" icon="@dust:fa6-pro-brands:github" color="gray" variant="ghost")
   template(#panel)
-    LazyUNavigationTree(:multiple="false" :links="navLinks")
+    LazyDocNav
 UMain
   slot
 UFooter

@@ -2,7 +2,7 @@
 import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
 
 const route = useRoute()
-const { data: page } = await useFetch<ParsedContent>(`https://data.vkdoc.net/chapters/${route.params.id}.json`)
+const { data: page } = await useFetch<ParsedContent>(`https://data.vkdoc.net/extensions/${route.params.slug}.json`)
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
@@ -33,7 +33,8 @@ UContainer
       UAside
         DocNav
     UPageBody(prose)
-      ContentRenderer(v-if="page.body" :value="page")
-    template(v-if="page.body?.toc?.links?.length" #right)
+      h1 Extension Metadata
+      ContentRenderer(v-if="page?.body" :value="page")
+    template(v-if="page?.body?.toc?.links?.length" #right)
       UContentToc(:links="page.body.toc.links")
 </template>
