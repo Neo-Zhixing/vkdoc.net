@@ -12,7 +12,7 @@ useSeoMeta({
   <ULandingHero
     title="VulkanHub"
     description="Better Vulkan Documentation starts here"
-    :links="[{ label: 'Start Reading', icon: '@dust:fa6-pro-regular:book', size: 'lg', to: '/chapters/1' }]"
+    :links="[{ label: 'Start Reading', icon: '@dust:fa6-pro-regular:book', size: 'lg', to: '/chapters/introduction' }]"
   />
   <ULandingSection title="Our Features">
     <ULandingGrid>

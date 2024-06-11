@@ -8,15 +8,24 @@ export default async function useNavLinks() {
     if (!index.value) {
       return
     }
-    const specs = index.value.map((i: any) => ({
+    const chapters = index.value.filter((i: any) => !i.appendix).map((i: any) => ({
       label: `${i.index}. ${i.title}`,
-      to: `/chapters/${i.index}`,
+      to: `/chapters/${i.id}`,
+      noPrefetch: true,
+    }))
+    const appendix = index.value.filter((i: any) => i.appendix).map((i: any) => ({
+      label: `${String.fromCharCode(65 + i.index)}. ${i.title}`,
+      to: `/chapters/${i.id}`,
       noPrefetch: true,
     }))
     return [{
       label: 'Vulkan Specification',
       icon: 'i-heroicons-book-open',
-      children: specs,
+      children: chapters,
+    },{
+      label: 'Appendix',
+      icon: 'i-heroicons-book-open',
+      children: appendix,
     }]
   })
   return navLinks

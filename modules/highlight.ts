@@ -25,7 +25,7 @@ export default defineNuxtModule({
       const results = await fetch('https://data.vkdoc.net/chapters/index.json')
       const resultJson = await results.json()
       for (const item of resultJson) {
-        routes.add(`/chapters/${item.index}`)
+        routes.add(`/chapters/${item.id}`)
       }
     }
     nuxt.options.nitro.prerender.routes = Array.from(routes)
