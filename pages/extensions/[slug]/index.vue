@@ -65,7 +65,7 @@ UContainer
           Field(name="Type") {{page.type === 'device' ? 'Device Extension' : 'Instance Extension'}}
           Field(name="Registered Extension Number") {{ page.number }}
           Field(name="Promoted To" v-if="page.promotedto")
-            NuxtLink.underline(:to="'/extensions/' + page.promotedto") {{ page.promotedto }}
+            NuxtLink.underline(:to="(page.promotedto.startsWith('VK_VERSION_') ? '/man/' : '/extensions/') + page.promotedto") {{ page.promotedto }}
           Field(name="Deprecated By" v-if="page.deprecatedby")
             NuxtLink.underline(:to="'/extensions/' + page.deprecatedby") {{ page.deprecatedby }}
           Field(name="Obsoletedby By" v-if="page.obsoletedby")
