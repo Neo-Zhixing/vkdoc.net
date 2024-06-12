@@ -10,6 +10,7 @@ interface SearchItem {
   type: EntryType
   content: string | null
   hierarchy: {
+    lvl0?: string
     lvl1?: string
     lvl2?: string
     lvl3?: string
@@ -73,11 +74,21 @@ const debouncedSearch = useDebounceFn(async (t: string) => {
         `hierarchy.lvl6:${snippetLength}`,
         `content:${snippetLength}`,
       ],
+      facets: [
+        'hierarchy.lvl0'
+      ]
     },
   })
   searchActive.value = true
   loading.value = false
 }, 200, { maxWait: 500 })
+
+const groupedSearchResult = computed(() => {
+  const sources = groupBy<{ [key: string]: SearchItem }>(
+                result.value,
+                (hit) => hit,
+              );
+})
 
 watch(query, async (q) => {
   await debouncedSearch(q)
@@ -100,10 +111,11 @@ function content(hit: Hit<SearchItem>) {
   return null
 }
 function header(hit: Hit<SearchItem>) {
+  const category = hit.hierarchy?.lvl0 || 'nocategory'
   if (hit.type === 'content') {
-    return hit._snippetResult?.hierarchy?.lvl1?.value
+    return category + hit._snippetResult?.hierarchy?.lvl1?.value
   }
-  return hit._snippetResult?.hierarchy[hit.type]?.value
+  return category + hit._snippetResult?.hierarchy[hit.type]?.value
 }
 
 const router = useRouter()
@@ -133,6 +145,28 @@ defineShortcuts({
     handler: () => { isContentSearchModalOpen.value = false },
   },
 })
+
+function groupBy<TValue extends Record<string, unknown>>(
+  values: TValue[],
+  predicate: (value: TValue) => string,
+  maxResultsPerGroup?: number
+): Record<string, TValue[]> {
+  return values.reduce<Record<string, TValue[]>>((acc, item) => {
+    const key = predicate(item);
+
+    if (!acc.hasOwnProperty(key)) {
+      acc[key] = [];
+    }
+
+    // We limit each section to show 5 hits maximum.
+    // This acts as a frontend alternative to `distinct`.
+    if (acc[key].length < (maxResultsPerGroup || 5)) {
+      acc[key].push(item);
+    }
+
+    return acc;
+  }, {});
+}
 </script>
 
 <template>

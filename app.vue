@@ -21,8 +21,11 @@ addAPIProvider('dust', {
 </template>
 
 <style>
-body {
+body, html {
   overflow-x: hidden;
   overflow-wrap: break-word;
+}
+main code {
+  overflow-wrap: anywhere;
 }
 </style>
