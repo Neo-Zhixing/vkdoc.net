@@ -28,6 +28,17 @@ export default defineNuxtModule({
         routes.add(`/chapters/${item.id}`)
       }
     }
+    {
+      // Add chapters
+      const results = await fetch('https://data.vkdoc.net/extensions/index.json')
+      const resultJson = await results.json()
+      for (const item of resultJson) {
+        routes.add(`/extensions/${item.extension}`)
+        if (item.proposal) {
+          routes.add(`/extensions/${item.extension}/proposal`)
+        }
+      }
+    }
     nuxt.options.nitro.prerender.routes = Array.from(routes)
   },
 })

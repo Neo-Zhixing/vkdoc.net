@@ -47,6 +47,7 @@ export default defineNuxtConfig({
     '/chapters': { redirect: '/chapters/0' },
     '/chapters/**': { isr: true, prerender: true },
     '/man/**': { isr: true, prerender: true },
+    '/extensions/**': { isr: true, prerender: true },
   },
   plausible: {
     apiHost: 'https://analytics.vkdoc.net',
