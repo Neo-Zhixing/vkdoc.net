@@ -123,7 +123,7 @@ UContainer
         span(v-if="i > 0") |
         span {{ item.trim() }}
   UPage
-    UPageHeader(:headline="headline" :title="page.title" :description="page.description" :class="{ 'border-b-0': attributes.length > 0 }")
+    UPageHeader(id="man-header" :headline="headline" :title="page.title" :description="page.description" :class="{ 'border-b-0': attributes.length > 0 }")
     div(class="relative flex border border-gray-200 dark:border-gray-700 rounded-md overflow-hidden not-prose" v-if="attributes.length > 0")
         div(v-for="attrib in attributes" :key="attrib.id" class="flex flex-col gap-0.5 justify-between py-1.5 font-medium bg-gray-50 dark:bg-gray-800 border-r border-r-gray-200 dark:border-r-gray-700")
           label(class="block text-xs px-2.5 font-medium text-gray-400 dark:text-gray-500 -my-px") {{ attrib.title }}
