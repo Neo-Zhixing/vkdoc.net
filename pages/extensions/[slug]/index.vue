@@ -49,6 +49,13 @@ const contacts = computed(() => {
     }
   })
 })
+
+function promotionStatusToURL(promotion: string) {
+  if (promotion.startsWith('VK_VERSION')) {
+    return '/man/' + promotion
+  }
+  return '/extensions/' + promotion
+}
 </script>
 
 <template lang="pug">
@@ -65,17 +72,23 @@ UContainer
           Field(name="Type") {{page.type === 'device' ? 'Device Extension' : 'Instance Extension'}}
           Field(name="Registered Extension Number") {{ page.number }}
           Field(name="Promoted To" v-if="page.promotedto")
-            NuxtLink.underline(:to="(page.promotedto.startsWith('VK_VERSION_') ? '/man/' : '/extensions/') + page.promotedto") {{ page.promotedto }}
+            NuxtLink.underline(:to="promotionStatusToURL(page.promotedto)") {{ page.promotedto }}
           Field(name="Deprecated By" v-if="page.deprecatedby")
-            NuxtLink.underline(:to="'/extensions/' + page.deprecatedby") {{ page.deprecatedby }}
+            NuxtLink.underline(:to="promotionStatusToURL(page.deprecatedby)") {{ page.deprecatedby }}
           Field(name="Obsoletedby By" v-if="page.obsoletedby")
-            NuxtLink.underline(:to="'/extensions/' + page.obsoletedby") {{ page.obsoletedby }}
+            NuxtLink.underline(:to="promotionStatusToURL(page.obsoletedby)") {{ page.obsoletedby }}
           Field(name="Status")
-            NuxtLink.mr-2(to="/chapters/introduction#introduction-ratified")
+            NuxtLink.mr-1(to="/chapters/introduction#introduction-ratified")
               UBadge(:color="page.ratified ? 'green' : 'orange'") {{ page.ratified ? 'Ratified' : 'Not Ratified' }}
-            NuxtLink.mr-2(to="/chapters/boilerplate#boilerplate-provisional-header")
+            NuxtLink.mr-1(to="/chapters/boilerplate#boilerplate-provisional-header")
               UBadge(v-if="page.provisional" color="red" ) Provisional
-            NuxtLink.mr-2(:to="`/extensions/${page.extension}/proposal`" v-if="page.proposal" )
+            NuxtLink.mr-1(to="/chapters/extendingvulkan#extendingvulkan-compatibility-promotion")
+              UBadge(v-if="page.promotedto" color="teal" ) Promoted
+            NuxtLink.mr-1(to="/chapters/extendingvulkan#extendingvulkan-compatibility-deprecation")
+              UBadge(v-if="page.deprecatedby" color="purple" ) Deprecated
+            NuxtLink.mr-1(to="/chapters/extendingvulkan#extendingvulkan-compatibility-obsoletion")
+              UBadge(v-if="page.obsoletedby" color="purple" ) Obsoleted
+            NuxtLink.mr-1(:to="`/extensions/${page.extension}/proposal`" v-if="page.proposal" )
               UBadge(color="blue") Proposal Available
           Field(name="Contacts")
             ul
