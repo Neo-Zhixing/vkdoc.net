@@ -166,7 +166,7 @@ defineShortcuts({
           @click="isContentSearchModalOpen = false"
         />
       </div>
-      <div class="flex flex-col min-h-[20rem]">
+      <div class="flex flex-col min-h-[20rem] grow">
         <div
           v-if="query === '' || !searchActive"
           class="flex-1 flex flex-col items-center justify-center pointer-events-none gap-4"
@@ -215,6 +215,9 @@ defineShortcuts({
             </div>
           </HComboboxOption>
         </HComboboxOptions>
+      </div>
+      <div class="pb-2 pt-1 px-8 text-right">
+        <UIcon class="w-16 ml-2" name="logos:algolia" />
       </div>
     </HCombobox>
   </UModal>

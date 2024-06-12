@@ -75,8 +75,8 @@ UContainer
               UBadge(:color="page.ratified ? 'green' : 'orange'") {{ page.ratified ? 'Ratified' : 'Not Ratified' }}
             NuxtLink.mr-2(to="/chapters/boilerplate#boilerplate-provisional-header")
               UBadge(v-if="page.provisional" color="red" ) Provisional
-            NuxtLink.mr-2(:to="`/extensions/${page.extension}/proposal`")
-              UBadge(v-if="page.proposal" color="blue" ) Proposal Available
+            NuxtLink.mr-2(:to="`/extensions/${page.extension}/proposal`" v-if="page.proposal" )
+              UBadge(color="blue") Proposal Available
           Field(name="Contacts")
             ul
               li.flex.items-center(v-for="contact in contacts" :key="contact.handle")

@@ -6,6 +6,9 @@ const { data: page } = await useFetch<ParsedContent>(`https://data.vkdoc.net/man
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
+if (page.value.redirect) {
+  await navigateTo('/man/' + page.value.redirect)
+}
 
 // eslint-disable-next-line unused-imports/no-unused-vars
 const headline = computed(() => {
