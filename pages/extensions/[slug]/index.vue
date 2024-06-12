@@ -24,6 +24,31 @@ const uiPage = {
   },
   right: 'lg:col-span-3',
 }
+
+const contacts = computed(() => {
+  const contacts = page.value?.contact?.split(',') || [];
+  return contacts.map((contact: string) => {
+    const contactWords = contact.trim().split(' ')
+    const name = contactWords.slice(0, -1).join(' ')
+    let handle = contactWords[contactWords.length - 1]
+    let icon = '@dust:fa6-pro-solid:user'
+    let link = null
+    if (handle.startsWith('gitlab:@')) {
+      icon = '@dust:fa6-pro-brands:gitlab'
+      handle = handle.replace('gitlab:', '')
+    } else if (handle.startsWith('@')) {
+      icon = '@dust:fa6-pro-brands:github'
+      const issuePlaceholderText = `[${page.value?.extension}] ${handle} %0A*Here describe the issue or question you have about the ${page.value?.extension} extension*`
+      link = `https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=${issuePlaceholderText}`
+    }
+    return {
+      icon,
+      name,
+      link,
+      handle
+    }
+  })
+})
 </script>
 
 <template lang="pug">
@@ -35,7 +60,7 @@ UContainer
     UPageBody(prose)
       ContentRenderer(v-if="page?.body" :value="page")
     template(#right)
-      UContentToc(v-if="page?.body?.toc?.links?.length" :links="page.body.toc.links")
+      UContentToc(v-if="page" :links="page.body.toc.links")
         template(#bottom)
           Field(name="Type") {{page.type === 'device' ? 'Device Extension' : 'Instance Extension'}}
           Field(name="Registered Extension Number") {{ page.number }}
@@ -46,9 +71,16 @@ UContainer
           Field(name="Obsoletedby By" v-if="page.obsoletedby")
             NuxtLink.underline(:to="'/extensions/' + page.obsoletedby") {{ page.obsoletedby }}
           Field(name="Status")
-            UBadge.mr-2(:color="page.ratified ? 'green' : 'orange'") {{ page.ratified ? 'Ratified' : 'Not Ratified' }}
-            NuxtLink.mr-2(to="/boilerplate#boilerplate-provisional-header")
+            NuxtLink.mr-2(to="/chapters/introduction#introduction-ratified")
+              UBadge(:color="page.ratified ? 'green' : 'orange'") {{ page.ratified ? 'Ratified' : 'Not Ratified' }}
+            NuxtLink.mr-2(to="/chapters/boilerplate#boilerplate-provisional-header")
               UBadge(v-if="page.provisional" color="red" ) Provisional
             NuxtLink.mr-2(:to="`/extensions/${page.extension}/proposal`")
               UBadge(v-if="page.proposal" color="blue" ) Proposal Available
+          Field(name="Contacts")
+            ul
+              li.flex.items-center(v-for="contact in contacts" :key="contact.handle")
+                UIcon.mr-2(:name="contact.icon" v-if="contact.icon")
+                a(:href="contact.link" target="_blank" v-if="contact.link") {{ contact.name }}
+                template(v-else) {{ contact.name }} ({{ contact.handle }})
 </template>

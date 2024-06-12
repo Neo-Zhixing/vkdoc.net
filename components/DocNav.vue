@@ -139,13 +139,13 @@ const extensions = computed(() => {
     <UNavigationAccordion
       :links="chapters"
       :multiple="false"
-      :default-open="($route.path.startsWith('/extensions') || $route.path === '/chapters/extensions')"
+      :default-open="($route.path.startsWith('/extensions') || $route.path === '/chapters/extensions') ? true : undefined"
       :ui="{ ...ui.accordion, links: ui.links }"
     />
     <UNavigationAccordion
       :links="appendix"
       :multiple="false"
-      :default-open="true"
+      :default-open="($route.path.startsWith('/extensions') || $route.path === '/chapters/extensions') ? true : undefined"
       :ui="{ ...ui.accordion, links: ui.links }"
     />
     <UNavigationAccordion
