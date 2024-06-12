@@ -23,8 +23,8 @@ devDependencies:
     specifier: ^2.12.1
     version: 2.12.1(nuxt@3.11.2)(vue@3.4.27)
   '@nuxt/ui-pro':
-    specifier: ^1.2.0
-    version: 1.2.0(nuxt@3.11.2)(vite@5.2.13)(vue@3.4.27)
+    specifier: npm:@nuxt/ui-pro-edge@latest
+    version: /@nuxt/ui-pro-edge@1.2.0-28614875.8eede69(nuxt@3.11.2)(vite@5.2.13)(vue@3.4.27)
   '@nuxtjs/algolia':
     specifier: ^1.10.2
     version: 1.10.2(vue@3.4.27)
@@ -2151,8 +2151,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxt/ui-pro@1.2.0(nuxt@3.11.2)(vite@5.2.13)(vue@3.4.27):
-    resolution: {integrity: sha512-lWcCijOqf/5xqjK2vN3e828fzxvun2JgFRgc4q+iG6hn/L2WRvuBAikV4KuAe4NjQGz3J8xT2XzWqs7vitisCw==}
+  /@nuxt/ui-pro-edge@1.2.0-28614875.8eede69(nuxt@3.11.2)(vite@5.2.13)(vue@3.4.27):
+    resolution: {integrity: sha512-+PL8V/4SFQJxrld6W11rrK43ETwwrt6N41c3jWQ9kcl11wUQhoC2023Rp/kXwegoRROuD32j06uZA9vQzCj8lg==}
     dependencies:
       '@nuxt/ui': 2.16.0(nuxt@3.11.2)(vite@5.2.13)(vue@3.4.27)
       '@vueuse/core': 10.10.0(vue@3.4.27)

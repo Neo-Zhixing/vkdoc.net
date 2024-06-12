@@ -2,7 +2,7 @@
 import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
 
 const route = useRoute()
-const { data: page } = await useFetch<ParsedContent>(`https://data.vkdoc.net/extensions/${route.params.slug}.json`)
+const { data: page } = await useFetch<ParsedContent>(`https://data.vkdoc.net/extensions/${route.params.slug}.proposal.json`)
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found' })
 }
@@ -18,11 +18,11 @@ const uiPage = {
   wrapper: 'lg:grid-cols-12',
   left: 'lg:col-span-3',
   center: {
-    narrow: 'lg:col-span-7',
-    base: 'lg:col-span-9',
-    full: 'lg:col-span-11',
+    narrow: 'lg:col-span-6',
+    base: 'lg:col-span-8',
+    full: 'lg:col-span-10',
   },
-  right: 'lg:col-span-2',
+  right: 'lg:col-span-3',
 }
 </script>
 
@@ -33,8 +33,8 @@ UContainer
       UAside
         DocNav
     UPageBody(prose)
-      h1 Extension Metadata
+      ProseH1 {{ page.title }}
       ContentRenderer(v-if="page?.body" :value="page")
-    template(v-if="page?.body?.toc?.links?.length" #right)
-      UContentToc(:links="page.body.toc.links")
+    template(#right)
+      UContentToc(v-if="page?.body?.toc?.links?.length" :links="page.body.toc.links")
 </template>
