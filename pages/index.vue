@@ -23,3 +23,10 @@ useSeoMeta({
     </ULandingGrid>
   </ULandingSection>
 </template>
+
+<style>
+.docbody {
+  overflow-x: hidden;
+  overflow-wrap: anywhere;
+}
+</style>

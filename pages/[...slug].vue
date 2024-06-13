@@ -1,7 +1,7 @@
 <template>
   <UContainer>
     <UPage>
-      <UPageBody prose>
+      <UPageBody prose class="docbody">
         <ContentDoc />
       </UPageBody>
     </UPage>

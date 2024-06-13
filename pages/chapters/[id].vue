@@ -32,7 +32,7 @@ UContainer
     template(#left)
       UAside
         DocNav
-    UPageBody(prose)
+    UPageBody(prose).docbody
       ContentRenderer(v-if="page.body" :value="page")
     template(v-if="page.body?.toc?.links?.length" #right)
       UContentToc(:links="page.body.toc.links")

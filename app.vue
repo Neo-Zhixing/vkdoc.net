@@ -19,13 +19,3 @@ addAPIProvider('dust', {
     <DocSearch />
   </ClientOnly>
 </template>
-
-<style>
-body, html {
-  overflow-x: hidden;
-  overflow-wrap: break-word;
-}
-main code {
-  overflow-wrap: anywhere;
-}
-</style>

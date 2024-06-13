@@ -129,6 +129,6 @@ UContainer
         div(v-for="attrib in attributes" :key="attrib.id" class="flex flex-col gap-0.5 justify-between py-1.5 font-medium bg-gray-50 dark:bg-gray-800 border-r border-r-gray-200 dark:border-r-gray-700")
           label(class="block text-xs px-2.5 font-medium text-gray-400 dark:text-gray-500 -my-px") {{ attrib.title }}
           span(class="mx-2.5") {{ attrib.values }}
-    UPageBody(prose)
+    UPageBody(prose).docbody
       ContentRenderer(v-if="page.body" :value="page")
 </template>

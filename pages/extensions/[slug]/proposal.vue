@@ -32,7 +32,7 @@ UContainer
     template(#left)
       UAside
         DocNav
-    UPageBody(prose)
+    UPageBody(prose).docbody
       ProseH1 {{ page.title }}
       ContentRenderer(v-if="page?.body" :value="page")
     template(#right)
