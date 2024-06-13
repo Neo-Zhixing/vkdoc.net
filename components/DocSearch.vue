@@ -41,12 +41,12 @@ const loading = ref(false)
 const query = ref('')
 const searchActive = ref(false)
 
-const debouncedSearch = useDebounceFn(async (t: string) => {
+const debouncedSearch = useDebounceFn(async () => {
   loading.value = true
 
   const snippetLength = 10
   await search({
-    query: t,
+    query: query.value,
     // attributesToHighlight: ['title', 'content'],
     requestOptions: {
       highlightPreTag: '<mark>',
@@ -74,9 +74,6 @@ const debouncedSearch = useDebounceFn(async (t: string) => {
         `hierarchy.lvl6:${snippetLength}`,
         `content:${snippetLength}`,
       ],
-      facets: [
-        'hierarchy.lvl0'
-      ]
     },
   })
   searchActive.value = true
@@ -84,15 +81,15 @@ const debouncedSearch = useDebounceFn(async (t: string) => {
 }, 200, { maxWait: 500 })
 
 const groupedSearchResult = computed(() => {
-  const sources = groupBy<{ [key: string]: SearchItem }>(
-                result.value,
-                (hit) => hit,
-              );
+  const groups: { [key: string]: any[] } = {};
+  for (const item of result.value.hits) {
+    groups[item.hierarchy.lvl0 || ''] = groups[item.hierarchy.lvl0 || ''] || [];
+    groups[item.hierarchy.lvl0 || ''].push(item);
+  }
+  return groups
 })
 
-watch(query, async (q) => {
-  await debouncedSearch(q)
-})
+watch(query, debouncedSearch)
 
 function entryTypeToIcon(entryType: EntryType): string {
   if (entryType === 'content') {
@@ -111,11 +108,10 @@ function content(hit: Hit<SearchItem>) {
   return null
 }
 function header(hit: Hit<SearchItem>) {
-  const category = hit.hierarchy?.lvl0 || 'nocategory'
   if (hit.type === 'content') {
-    return category + hit._snippetResult?.hierarchy?.lvl1?.value
+    return hit._snippetResult?.hierarchy?.lvl1?.value
   }
-  return category + hit._snippetResult?.hierarchy[hit.type]?.value
+  return hit._snippetResult?.hierarchy[hit.type]?.value
 }
 
 const router = useRouter()
@@ -145,28 +141,6 @@ defineShortcuts({
     handler: () => { isContentSearchModalOpen.value = false },
   },
 })
-
-function groupBy<TValue extends Record<string, unknown>>(
-  values: TValue[],
-  predicate: (value: TValue) => string,
-  maxResultsPerGroup?: number
-): Record<string, TValue[]> {
-  return values.reduce<Record<string, TValue[]>>((acc, item) => {
-    const key = predicate(item);
-
-    if (!acc.hasOwnProperty(key)) {
-      acc[key] = [];
-    }
-
-    // We limit each section to show 5 hits maximum.
-    // This acts as a frontend alternative to `distinct`.
-    if (acc[key].length < (maxResultsPerGroup || 5)) {
-      acc[key].push(item);
-    }
-
-    return acc;
-  }, {});
-}
 </script>
 
 <template>
@@ -222,32 +196,34 @@ function groupBy<TValue extends Record<string, unknown>>(
           v-else
           static
           hold
-          class="p-4 flex-1 flex flex-col gap-2 overflow-y-auto max-h-full relative scroll-py-10"
+          class="flex-1 flex flex-col gap-2 overflow-y-auto max-h-full relative scroll-py-10 divide-gray-100 dark:divide-gray-800 divide-y"
           :class="{
             'pb-2': result.hits.length <= 2,
           }"
         >
-          <HComboboxOption
-            v-for="hit in result.hits"
-            :key="hit.objectID"
-            v-slot="{ active }"
-            :value="hit"
-            as="template"
-          >
-            <div class="cursor-pointer" :class="[commandPaletteUi.group.command.base, active ? commandPaletteUi.group.command.active : commandPaletteUi.group.command.inactive]">
-              <div :class="commandPaletteUi.group.command.container">
-                <UIcon :name="entryTypeToIcon(hit.type)" :class="[commandPaletteUi.group.command.icon.base, active ? commandPaletteUi.group.command.icon.active : commandPaletteUi.group.command.icon.inactive]" aria-hidden="true" />
+          <div v-for="[key, group] in Object.entries(groupedSearchResult)" :key="key" class="p-2">
+            <div class="text-xs font-semibold text-gray-900 dark:text-white uppercase my-2 px-2">{{  key  }}</div>
+            <HComboboxOption
+              v-for="hit in group"
+              :key="hit.objectID"
+              v-slot="{ active }"
+              :value="hit"
+              as="template"
+            >
+              <div class="cursor-pointer" :class="[commandPaletteUi.group.command.base, active ? commandPaletteUi.group.command.active : commandPaletteUi.group.command.inactive]">
+                <div :class="commandPaletteUi.group.command.container">
+                  <UIcon :name="entryTypeToIcon(hit.type)" :class="[commandPaletteUi.group.command.icon.base, active ? commandPaletteUi.group.command.icon.active : commandPaletteUi.group.command.icon.inactive]" aria-hidden="true" />
 
-                <div :class="[commandPaletteUi.group.command.label]">
-                  <!-- eslint-disable-next-line vue/no-v-html -->
-                  <span class="truncate flex-none" v-html="header(hit)" />
-
-                  <!-- eslint-disable-next-line vue/no-v-html -->
-                  <span class="truncate" :class="commandPaletteUi.group.command.suffix" v-html="content(hit)" />
+                  <div :class="[commandPaletteUi.group.command.label]">
+                    <!-- eslint-disable-next-line vue/no-v-html -->
+                    <span class="truncate flex-none" v-html="header(hit)" />
+                    <!-- eslint-disable-next-line vue/no-v-html -->
+                    <span class="truncate" :class="commandPaletteUi.group.command.suffix" v-html="content(hit)" />
+                  </div>
                 </div>
               </div>
-            </div>
-          </HComboboxOption>
+            </HComboboxOption>
+          </div>
         </HComboboxOptions>
       </div>
       <div class="pb-2 pt-1 px-8 text-right">

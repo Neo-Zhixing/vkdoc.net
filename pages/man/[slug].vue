@@ -26,6 +26,7 @@ const headline = computed(() => {
       builtins: 'SPIR-V Built-In',
       basetypes: 'Basetype',
       freeform: 'Manual',
+      spirv: 'SPIR-V'
     }[ty]
     if (name) {
       return name
