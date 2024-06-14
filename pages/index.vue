@@ -28,7 +28,9 @@ useSeoMeta({
 .docbody {
   overflow-x: hidden;
   overflow-wrap: anywhere;
-  padding-left: 1px;
-  padding-right: 1px;
+}
+.docbody .refpage-header-container {
+  margin-left: 1px;
+  margin-right: 1px;
 }
 </style>

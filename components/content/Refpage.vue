@@ -39,7 +39,7 @@ const iconName = computed(() => {
 </script>
 
 <template>
-  <div class="ring-1 shadow overflow-hidden ring-gray-200 dark:ring-gray-700 rounded-lg my-4">
+  <div class="ring-1 shadow overflow-hidden ring-gray-200 dark:ring-gray-700 rounded-lg my-4 refpage-header-container">
     <div class="bg-gray-100 dark:bg-gray-800 p-4 refpage-header not-prose" @click="onClick">
       <div class="text-sm refpage-header-title flex-col sm:flex-row">
         <b class="mr-4 text-base refpage-main-header">{{ normalizedName }}</b>
