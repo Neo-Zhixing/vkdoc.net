@@ -28,5 +28,7 @@ useSeoMeta({
 .docbody {
   overflow-x: hidden;
   overflow-wrap: anywhere;
+  padding-left: 1px;
+  padding-right: 1px;
 }
 </style>
