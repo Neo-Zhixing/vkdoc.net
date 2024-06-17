@@ -44,7 +44,7 @@ export default defineNuxtConfig({
     url: 'https://vkdoc.net',
   },
   routeRules: {
-    '/chapters': { redirect: '/chapters/0' },
+    '/chapters': { redirect: '/chapters/introduction' },
     '/chapters/**': { isr: true, prerender: true },
     '/man/**': { isr: true, prerender: true },
     '/extensions/**': { isr: true, prerender: true },
