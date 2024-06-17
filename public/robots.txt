@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vkxml.net/sitemap.xml
+Sitemap: https://vkdoc.net/sitemap.xml
