@@ -63,4 +63,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+  runtimeConfig: {
+    plausibleToken: ''
+  }
 })

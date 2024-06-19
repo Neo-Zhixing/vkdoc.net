@@ -9,6 +9,7 @@ useSeoMeta({
 
 const colorMode = useColorMode()
 const appConfig = useAppConfig()
+const { data: version } = useFetch('https://data.vkdoc.net/index.json')
 </script>
 
 <template>
@@ -16,7 +17,12 @@ const appConfig = useAppConfig()
     title="VulkanHub"
     description="Better Vulkan Documentation Starts Here"
     :links="[{ label: 'Start Reading', icon: '@dust:fa6-pro-regular:book', size: 'lg', to: '/chapters/introduction' }]"
-  />
+  >
+    <template #headline>
+      <UBadge color="gray" class="mx-2">Version {{ version.version }}</UBadge>
+      <UBadge color="gray" class="mx-2">Updated on {{ (new Date(version.last_changed * 1000)).toLocaleDateString() }}</UBadge>
+    </template>
+  </ULandingHero>
   <ULandingSection title="Our Features">
     <ULandingGrid>
       <ULandingCard class="col-span-6 row-span-2" icon="@dust:fa6-pro-regular:magnifying-glass" title="Efficient Search" description="Efficiently search the Vulkan Specification with function names, extensions, validation codes, and more" />
