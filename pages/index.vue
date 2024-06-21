@@ -1,10 +1,10 @@
 <script setup>
 useSeoMeta({
   title: 'HomePage',
-  description: 'Better Vulkan Documetation starts here',
+  description: 'Better Vulkan Documentation starts here',
   ogTitle: 'VulkanHub',
   ogSiteName: 'VulkanHub',
-  ogDescription: 'Better Vulkan Documetation starts here',
+  ogDescription: 'Better Vulkan Documentation starts here',
 })
 
 const colorMode = useColorMode()
