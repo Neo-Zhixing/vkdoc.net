@@ -121,16 +121,20 @@ function onSelect(hit: Hit<SearchItem>) {
   if (url.startsWith(hostname)) {
     url = url.substring(hostname.length)
   }
-  isContentSearchModalOpen.value = false
+  onClose();
   router.push(url)
 }
 
-const canToggleModal = computed(() => !isContentSearchModalOpen.value)
+function onClose() {
+  isContentSearchModalOpen.value = false;
+  query.value = '';
+  searchActive.value = false;
+  loading.value = false;
+}
 
 defineShortcuts({
   meta_k: {
-    usingInput: false,
-    whenever: [canToggleModal],
+    usingInput: true,
     handler: () => {
       isContentSearchModalOpen.value = true
     },
@@ -149,6 +153,7 @@ defineShortcuts({
       as="div"
       class="flex flex-col flex-1 min-h-0 divide-y divide-gray-100 dark:divide-gray-800"
       @update:model-value="onSelect"
+      by="objectID"
     >
       <div class="relative flex items-center">
         <UIcon
@@ -171,7 +176,7 @@ defineShortcuts({
           color="gray"
           variant="link"
           :padded="false"
-          @click="isContentSearchModalOpen = false"
+          @click="onClose"
         />
       </div>
       <div class="flex flex-col min-h-[20rem] grow">
@@ -195,7 +200,6 @@ defineShortcuts({
         <HComboboxOptions
           v-else
           static
-          hold
           class="flex-1 flex flex-col gap-2 overflow-y-auto max-h-full relative scroll-py-10 divide-gray-100 dark:divide-gray-800 divide-y"
           :class="{
             'pb-2': result.hits.length <= 2,
