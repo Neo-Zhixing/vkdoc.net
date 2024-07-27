@@ -46,7 +46,7 @@ const iconName = computed(() => {
         <ContentSlot :use="$slots.default" unwrap="p" />
       </div>
       <UButton class="sm:hidden" target="_blank" color="gray" variant="solid" :to="`/man/${normalizedName}`" icon="i-material-symbols-open-in-new-rounded" />
-      <UButton class="hidden sm:block" target="_blank" color="gray" variant="link" :to="`/man/${normalizedName}`" label="Open" icon="i-material-symbols-open-in-new-rounded" />
+      <UButton class="hidden sm:inline-flex" target="_blank" color="gray" variant="link" :to="`/man/${normalizedName}`" label="Open" icon="i-material-symbols-open-in-new-rounded" />
       <UIcon class="text-2xl shrink-0 !hidden sm:!block" :name="iconName" />
     </div>
     <RefpageContent v-if="state !== 'close'" :name="normalizedName" @pending="onPendingStateChange" />
