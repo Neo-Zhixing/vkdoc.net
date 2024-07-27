@@ -5,7 +5,7 @@ const iconStyle = 'note-icon w-4 h-4 mr-2 mt-1 text-[--color-light] dark:text-[-
 
 <template>
   <div :class="wrapperStyle">
-    <UIcon :class="iconStyle" name="@dust:fa6-pro-solid:info" dynamic />
+    <UIcon :class="iconStyle" name="@dust:fa6-pro-solid:info" />
     <div class="note-content">
       <ContentSlot :use="$slots.default" />
     </div>
