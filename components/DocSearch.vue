@@ -182,8 +182,15 @@ defineShortcuts({
       <div class="flex flex-col min-h-[20rem] grow">
         <div
           v-if="query === '' || !searchActive"
-          class="flex-1 flex flex-col items-center justify-center pointer-events-none gap-4"
-        />
+          class="flex-1 flex flex-col items-start justify-center pointer-events-none gap-4 px-10"
+        >
+          <span class="text-gray-400 font-bold">
+            Things you can search for:
+          </span>
+          <ul class="text-gray-400 text-sm">
+            <li>Validation codes</li>
+          </ul>
+        </div>
         <div
           v-else-if="!loading && !result.hits.length"
           class="flex-1 flex flex-col items-center justify-center pointer-events-none gap-4"
@@ -194,7 +201,7 @@ defineShortcuts({
             class="text-gray-400 dark:text-gray-500 h-6 w-6"
           />
           <span class="text-gray-400">
-            Not Found.
+            Not Found
           </span>
         </div>
         <HComboboxOptions
@@ -220,9 +227,9 @@ defineShortcuts({
 
                   <div :class="[commandPaletteUi.group.command.label]">
                     <!-- eslint-disable-next-line vue/no-v-html -->
-                    <span class="truncate flex-none" v-html="header(hit)" />
+                    <div class="truncate flex-none shrink" v-html="header(hit)" />
                     <!-- eslint-disable-next-line vue/no-v-html -->
-                    <span class="truncate" :class="commandPaletteUi.group.command.suffix" v-html="content(hit)" />
+                    <div class="truncate shrink" :class="commandPaletteUi.group.command.suffix" v-html="content(hit)" />
                   </div>
                 </div>
               </div>
